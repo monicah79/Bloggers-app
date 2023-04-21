@@ -1,4 +1,4 @@
-<a name="Blog-App"></a>
+<a name="Bloggers-App"></a>
 
 <!-- TABLE OF CONTENTS -->
 
@@ -145,4 +145,4 @@ I would like to thank microverse for their resources.
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT]() licensed.
+This project is [MIT](https://github.com/monicah79/Bloggers-app/blob/create-data-model/license) licensed.
