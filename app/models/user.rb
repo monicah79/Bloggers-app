@@ -15,5 +15,3 @@ class User < ApplicationRecord
     self.posts_count = posts.count
   end
 end
-
-
