@@ -2,8 +2,9 @@ class Post < ApplicationRecord
   belongs_to :author, class_name: 'User'
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-
-  validates :title, :text, :author_id, presence: true
+  validates :title, length: { in: 1..250 }
+  validates :text, presence: true
+  validates :author_id, presence: true
   validates :likes_counter, :comments_counter, numericality: { greater_than_or_equal_to: 0 }
 
   def update_likes_counter
