@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_27_182507) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_28_123238) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "posts_count"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer "author_id"
@@ -32,6 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_182507) do
     t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["author_id"], name: "index_likes_on_author_id"
     t.index ["post_id"], name: "index_likes_on_post_id"
   end
@@ -43,8 +51,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_182507) do
     t.integer "likes_counter"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
-    t.index ["user_id"], name: "index_posts_on_user_id"
+    t.bigint "author_id", null: false
+    t.integer "likes_count"
+    t.index ["author_id"], name: "index_posts_on_author_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,6 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_182507) do
     t.integer "posts_counter"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "posts_count"
   end
 
   add_foreign_key "comments", "posts"
@@ -61,5 +71,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_182507) do
   add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users", column: "author_id"
-  add_foreign_key "posts", "users"
+  add_foreign_key "posts", "users", column: "author_id"
 end

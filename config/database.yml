@@ -3,3 +3,12 @@ development:
   username: monnie
   password: monnie
   adapter: postgresql
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: Bloggers_app_development tests
+  pool: 5
+  username: monnie
+  password: monnie
+  port: 5432
