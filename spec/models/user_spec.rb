@@ -1,12 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it '#is valid with valid attributes' do
-    expect(User.new(name: 'John Doe', photo: 'photo.jpg', bio: 'Lorem ipsum', posts_counter: 0)).to be_valid
+  subject { described_class.new }
+  it 'is valid with valid attributes' do
+    subject.name = 'John Doe'
+    subject.email = 'john@example.com'
+    subject.photo = 'example.jpg' # provide a value for photo
+    subject.bio = 'This is a bio.' # provide a value for bio
+    subject.posts_counter = 0
+    expect(subject).to be_valid
   end
 
   it 'is not valid without a name' do
-    expect(User.new(name: nil)).to_not be_valid
+    subject.email = 'john@example.com'
+    subject.photo = 'example.jpg'
+    subject.bio = 'This is a bio.'
+    subject.posts_counter = 0
+    expect(subject).to_not be_valid
   end
 
   it 'is not valid without a photo' do
@@ -28,5 +38,12 @@ RSpec.describe User, type: :model do
   it 'has many posts' do
     assc = described_class.reflect_on_association(:posts)
     expect(assc.macro).to eq :has_many
+  end
+
+  it 'is not valid with a negative posts counter' do
+    subject.name = 'John Doe'
+    subject.email = 'john@example.com'
+    subject.posts_counter = -1
+    expect(subject).to_not be_valid
   end
 end

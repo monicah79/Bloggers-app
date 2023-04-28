@@ -1,12 +1,10 @@
 class Post < ApplicationRecord
-  belongs_to :user, foreign_key: 'author_id'
+  belongs_to :author, class_name: 'User'
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  attribute :likes_counter, :integer, default: 0
-  attribute :comments_counter, :integer, default: 0
 
-  validates :title, presence: true
-  validates :text, presence: true
+  validates :title, :text, :author_id, presence: true
+  validates :likes_counter, :comments_counter, numericality: { greater_than_or_equal_to: 0 }
 
   def update_likes_counter
     increment!(:likes_counter)
