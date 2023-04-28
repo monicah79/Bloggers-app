@@ -1,18 +1,22 @@
 class Post < ApplicationRecord
-  belongs_to :author, class_name: 'User', counter_cache: true
-  validates :author, presence: true
-  has_many :likes, foreign_key: :post_id
-  has_many :comments, foreign_key: :post_id
+  belongs_to :user, foreign_key: 'author_id'
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  attribute :likes_counter, :integer, default: 0
+  attribute :comments_counter, :integer, default: 0
 
-  after_save :update_author_posts_counter
+  validates :title, presence: true
+  validates :text, presence: true
 
-  private
-
-  def update_author_posts_counter
-    author.update(posts_counter: author.posts.count)
+  def update_likes_counter
+    increment!(:likes_counter)
   end
 
-  def recent_comments
-    comments.order(created_at: :desc).limit(5)
+  def update_comments_counter
+    increment!(:comments_counter)
+  end
+
+  def update_author_posts_counter
+    user.increment_counter(:posts_counter, 1)
   end
 end
