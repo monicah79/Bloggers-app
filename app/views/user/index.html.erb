@@ -1,1 +1,22 @@
-<h1>Here is a list of all user</h1>
+<h1 class="Head">Here is a list of all user</h1>
+
+<section class='section-container'>
+<% @users.each do |user| %>
+  <div class='user'>
+    <% if user.photo.attached? %>
+      <%= image_tag user.photo.url, class: "profile-photo" %>
+    <% else %>
+      <%= image_tag 'img-1.jpg' %>
+    <% end %>
+    <div class='profile_desc'>
+      <h2 class='name'><%= user.name %></h2>
+      <div class='post_link'>
+        <p>Number of posts: <%= user.posts_counter %></p>
+        <p>
+          <%= link_to "View_details", user_path(user) %>
+        </p>
+      </div>
+    </div>
+  </div>
+<% end %>
+</section>

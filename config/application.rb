@@ -10,8 +10,6 @@ require 'devise'
 
 require 'view_component/engine'
 
-config.autoload_paths << "#{Rails.root}/app/controllers"
-
 # config.assets.enabled = true
 
 # Require the gems listed in Gemfile, including any gems
@@ -26,7 +24,7 @@ module BloggersApp
     # Bower asset paths
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
 
-   
+    config.autoload_paths << "#{Rails.root}/app/controllers"
 
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0

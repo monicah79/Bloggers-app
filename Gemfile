@@ -66,15 +66,15 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'bootstrap', '~> 5.1.0'
+  gem 'bootstrap-sass', '~> 3.4.1'
   gem 'capybara'
+  gem 'devise'
+  gem 'jquery-rails'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 5.0.0'
-  gem 'selenium-webdriver'
-  gem 'webdrivers'
-  gem 'devise'
-  gem 'bootstrap-sass', '~> 3.4.1'
   gem 'sassc-rails', '>= 2.1.0'
-  gem 'jquery-rails'
-  gem 'sprockets-rails'
+  gem 'selenium-webdriver'
   gem 'view_component', '~> 2.0.0'
+  gem 'webdrivers'
 end

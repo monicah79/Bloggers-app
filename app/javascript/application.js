@@ -2,4 +2,11 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
+
 //= require bootstrap-sass/assets/javascripts/bootstrap-sprockets
+//= require jquery3
+//= require popper
+//= require bootstrap
+//= require rails-ujs
+//= require_tree .
+//= require bootstrap/dist/js/bootstrap
