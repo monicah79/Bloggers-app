@@ -71,4 +71,10 @@ group :test do
   gem 'rspec-rails', '~> 5.0.0'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'devise'
+  gem 'bootstrap-sass', '~> 3.4.1'
+  gem 'sassc-rails', '>= 2.1.0'
+  gem 'jquery-rails'
+  gem 'sprockets-rails'
+  gem 'view_component', '~> 2.0.0'
 end

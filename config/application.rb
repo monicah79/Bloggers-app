@@ -6,12 +6,28 @@ require_relative 'boot'
 
 require 'rails/all'
 
+require 'devise'
+
+require 'view_component/engine'
+
+config.autoload_paths << "#{Rails.root}/app/controllers"
+
+# config.assets.enabled = true
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# # Bower asset paths
+# config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
+
 module BloggersApp
   class Application < Rails::Application
+    # Bower asset paths
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
+
+   
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
