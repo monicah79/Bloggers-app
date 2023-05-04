@@ -1,27 +1,3 @@
-# class User < ApplicationRecord
-#   # Include default devise modules. Others available are:
-#   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-#   devise :database_authenticatable, :registerable,
-#          :recoverable, :rememberable, :validatable
-#   has_many :posts, foreign_key: 'author_id', dependent: :destroy
-
-#   validates :name, :photo, :bio, presence: true
-#   validates :posts_counter, numericality: { greater_than_or_equal_to: 0 }
-
-
-#   before_save :update_posts_count
-
-#   def recent_posts
-#     posts.order(created_at: :desc).limit(3)
-#   end
-
-#   private
-
-#   def update_posts_count
-#     self.posts_count = posts.count
-#   end
-# end
-
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
