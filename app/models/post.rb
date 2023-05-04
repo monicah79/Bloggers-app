@@ -7,6 +7,10 @@ class Post < ApplicationRecord
   validates :author_id, presence: true
   validates :likes_counter, :comments_counter, numericality: { greater_than_or_equal_to: 0 }
 
+  # Set default values for likes_counter and comments_counter
+  attribute :likes_counter, :integer, default: 0
+  attribute :comments_counter, :integer, default: 0
+
   def update_likes_counter
     increment!(:likes_counter)
   end
@@ -16,6 +20,6 @@ class Post < ApplicationRecord
   end
 
   def update_author_posts_counter
-    user.increment_counter(:posts_counter, 1)
+    author.increment_counter(:posts_counter, 1)
   end
 end

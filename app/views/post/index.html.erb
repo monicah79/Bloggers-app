@@ -1,1 +1,49 @@
-<h1>Shows the details of posts for a given user<h1>
+<h1 class="Head">Shows the details of posts for a given user<h1>
+
+<section class='section-container'>
+  <div class='user'>
+    <div class='profile-div'>
+      <div class='profile-photo'><%= @user.photo %></div>
+    </div>
+    <div class='user_name'>
+      <h2><%= @user.name %></h2>
+      <div class='post_nums'>
+        <p class="post_count">Number of posts: <%= @user.posts_counter %></p>
+      </div>
+    </div>
+  </div>
+
+  <section class="posts_container">
+    <% if @recent_posts.present? %>
+      <% @recent_posts.each_with_index do |post, index| %>
+        <div class="post">
+          <h3>Post #<%= index+1 %></h3>
+          <p class="post_text"><%= post.text %></p>
+          <p class="comments_likes">
+            Comments: <%= post.comments_counter %>,
+            Likes: <%= post.likes_counter %>
+          </p>
+        </div>
+      <% end %>
+    <% else %>
+      <p class='no-recent'> No recent posts.</p>
+    <% end %>
+  </section>
+
+  <div class="post">
+    <h4>Comments:</h4>
+    <% @post_comments.each do |comment| %>
+      <ul>
+        <% if comment.post_id === post.id %>
+          <li><%= comment.user.name %>: <%= comment.text %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+  <br>
+  <button class="all_posts">
+    Next
+  </button>
+</div>
+
+</section>
