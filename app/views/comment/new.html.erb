@@ -1,0 +1,6 @@
+<h1 class="head-comment">Comments</h1>
+  <%= form_with model: [@user, @post, @comment], url: new_user_post_comment_path, local: true do |form| %>
+    <%= form.text_area :text, required: true, class: "text ", placeholder: "Add a comment..." %>
+
+    <%= form.submit "Submit comment", class: "sbmit" %>
+  <% end %>

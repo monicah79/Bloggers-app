@@ -9,19 +9,42 @@ class PostController < ApplicationController
   end
 
   def show
-    @post_comments = Comment.where(post_id: @post)
+    @user = User.find(params[:user_id])
+    @post = @user.posts.find_by(id: params[:id])
+    if @post.nil?
+      flash[:error] = 'Post not found'
+      redirect_to user_post_path(@user)
+    else
+      @likes = @post.likes # Get all likes for the post
+    end
   end
 
   def new
-    @post = Post.new
+    @user = User.find(params[:user_id])
+    @post = @user.posts.new
+    render :new, locals: { post: @post }
+  end
+
+  def like
+    @post = Post.find(params[:id])
+    @like = @post.likes.build(user_id: current_user.id) # Create a new like object for the current user and post
+
+    if @like.save
+      flash[:success] = 'You liked this post!'
+    else
+      flash[:error] = 'There was an error liking this post.'
+    end
+
+    redirect_to @post
   end
 
   def create
-    @post = Post.new(post_params)
+    @user = User.find(params[:user_id])
+    @post = @user.posts.build(post_params)
     @post.author_id = current_user.id
 
     if @post.save
-      redirect_to user_post_path(current_user, @post), notice: 'Post was successfully created.'
+      redirect_to user_post_path(@user, @post), notice: 'Post was successfully created.'
     else
       render :new
     end
@@ -30,10 +53,12 @@ class PostController < ApplicationController
   def edit; end
 
   def update
+    @user = User.find(params[:user_id])
+    @post = @user.posts.find(params[:id])
     if @post.update(post_params)
-      redirect_to user_post_path(current_user, @post), notice: 'Post was successfully updated.'
+      redirect_to user_post_path(@user, @post)
     else
-      render :edit
+      render 'edit'
     end
   end
 
@@ -45,10 +70,13 @@ class PostController < ApplicationController
   private
 
   def set_post
+    return unless params[:id].present? && params[:id] != 'new'
+    return unless params[:id].to_i.to_s == params[:id]
+
     @post = Post.find(params[:id])
   end
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :text)
   end
 end

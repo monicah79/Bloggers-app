@@ -1,0 +1,17 @@
+<h1>New Post</h1>
+
+<%= form_with model: @post, url: user_post_path(@user.id), local: true do |form| %>
+  <div class="field">
+  <%= form.label :title  %>
+  <%= form.text_field :title, required: true, class: "form_title", placeholder: "Add a title here" %>
+  </div>
+
+  <div class="field">
+  <%= form.label :text %>
+  <%= form.text_area :text, required: true, class: "form_text", placeholder: "Write here...." %>
+  </div>
+
+  <div class="btn">
+  <%= form.submit "Submit post" %>
+</div>
+<% end %>

@@ -1,0 +1,3 @@
+module LikeHelper
+  # ...
+end
