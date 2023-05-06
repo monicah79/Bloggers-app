@@ -100,6 +100,7 @@ button {
   margin: 10px auto;
   width: 90px;
   height: 30px;
+  padding: 20px 35px;
 }
 
 button a {
@@ -122,4 +123,40 @@ button a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.head-comment {
+  text-align: center;
+}
+
+.text {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 60px 55px;
+  width: 60%;
+}
+
+.sbmit {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 30px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  justify-content: center;
+  width: 60%;
+  padding: 20px;
+}
+
+.btn {
+  text-align: center;
+  width: 60%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 20px;
 }
