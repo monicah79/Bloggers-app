@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   get 'like/create'
   get 'comment/new'
   devise_for :users
+  devise_scope :user do
+    get 'confirmations/new', to: 'devise/confirmations#new', as: :new_confirmation
+  end
 
   resources :user do
     resources :post do
