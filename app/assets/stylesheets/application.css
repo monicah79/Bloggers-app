@@ -160,3 +160,9 @@ button a {
   margin-left: auto;
   padding: 20px;
 }
+
+.actions {
+  margin-right: auto;
+  margin-left: auto;
+  width: 60%;
+}

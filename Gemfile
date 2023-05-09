@@ -69,7 +69,7 @@ group :test do
   gem 'bootstrap', '~> 5.1.0'
   gem 'bootstrap-sass', '~> 3.4.1'
   gem 'capybara'
-  gem 'devise'
+  gem 'devise', '~> 4.9', '>= 4.9.2'
   gem 'jquery-rails'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 5.0.0'
