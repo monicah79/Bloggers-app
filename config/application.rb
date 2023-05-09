@@ -10,6 +10,8 @@ require 'devise'
 
 require 'view_component/engine'
 
+require 'cancancan'
+
 # config.assets.enabled = true
 
 # Require the gems listed in Gemfile, including any gems
