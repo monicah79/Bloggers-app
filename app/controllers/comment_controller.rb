@@ -23,6 +23,19 @@ class CommentController < ApplicationController
 
   private
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @post = Post.find(params[:post_id])
+
+    if @comment&.destroy
+      flash[:success] = 'Comment deleted!'
+      @comment.post.decrement!(:comments_counter)
+    else
+      flash[:danger] = 'Comment not deleted!'
+    end
+    redirect_to user_post_path(current_user.id, @post.id)
+  end
+
   def comment_text
     params.require(:comment).permit(:text)[:text]
   end
