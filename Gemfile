@@ -68,6 +68,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'bootstrap', '~> 5.1.0'
   gem 'bootstrap-sass', '~> 3.4.1'
+  gem 'cancancan', '~> 1.9'
   gem 'capybara'
   gem 'devise', '~> 4.9', '>= 4.9.2'
   gem 'jquery-rails'
