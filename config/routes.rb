@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :users, controllers: { registrations: 'registrations' }
   post '/login', to: 'session#create'
   get 'like/create'
   get 'comment/new'
-  devise_for :users
+ 
   devise_scope :user do
     get 'confirmations/new', to: 'devise/confirmations#new', as: :new_confirmation
   end
