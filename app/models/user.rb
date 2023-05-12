@@ -18,8 +18,6 @@ class User < ApplicationRecord
   attr_accessor :confirmation_token
   attr_accessor :email, :password, :unconfirmed_email
 
-
-
   def generate_jwt
     payload = { user_id: id }
     secret_key = Rails.application.secrets.jwt_secret_key
