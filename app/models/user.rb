@@ -1,3 +1,4 @@
+require 'jwt'
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -15,6 +16,26 @@ class User < ApplicationRecord
   before_create :initialize_posts_count
 
   attr_accessor :confirmation_token
+  attr_accessor :email, :password, :unconfirmed_email
+
+
+
+  def generate_jwt
+    payload = { user_id: id }
+    secret_key = Rails.application.secrets.jwt_secret_key
+    algorithm = 'HS256'
+    JWT.encode(payload, secret_key, algorithm)
+  end
+
+  def self.decode_jwt(token)
+    decoded_token = JWT.decode(token, Rails.application.secrets.jwt_secret_key, true, { algorithm: 'HS256' })
+    payload = decoded_token.first
+    User.find(payload['user_id'])
+  end
+
+  def self.generate_jwt
+    # implementation
+  end
 
   def recent_posts
     posts.order(created_at: :desc).limit(3)

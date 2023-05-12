@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_09_221548) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_11_231237) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -93,7 +93,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_221548) do
     t.datetime "updated_at", null: false
     t.bigint "author_id", null: false
     t.integer "likes_count"
+    t.bigint "user_id", null: false
     t.index ["author_id"], name: "index_posts_on_author_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -118,6 +120,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_221548) do
     t.string "last_sign_in_ip"
     t.string "role"
     t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -129,5 +133,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_221548) do
   add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users", column: "author_id"
+  add_foreign_key "posts", "users"
   add_foreign_key "posts", "users", column: "author_id"
 end

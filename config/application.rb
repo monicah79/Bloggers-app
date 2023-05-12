@@ -31,6 +31,8 @@ module BloggersApp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.jwt_secret_key = "ec64b81f9fd6b96edbfaed839b2856fda9277d4138ffb3d60e142ea3cf2ed87278ce1c09406cdaca5a3c904d26730b263cad9c445f18e01aa76f0cdb51fe747d"
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
