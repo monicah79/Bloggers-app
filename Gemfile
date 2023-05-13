@@ -66,12 +66,14 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'bcrypt', '~> 3.1.7'
   gem 'bootstrap', '~> 5.1.0'
   gem 'bootstrap-sass', '~> 3.4.1'
   gem 'cancancan', '~> 1.9'
   gem 'capybara'
-  gem 'devise', '~> 4.9', '>= 4.9.2'
+  gem 'devise'
   gem 'jquery-rails'
+  gem 'jwt'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'sassc-rails', '>= 2.1.0'

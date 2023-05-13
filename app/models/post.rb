@@ -10,6 +10,7 @@ class Post < ApplicationRecord
   # Set default values for likes_counter and comments_counter
   attribute :likes_counter, :integer, default: 0
   attribute :comments_counter, :integer, default: 0
+  attribute :content, :text
 
   def update_likes_counter
     increment!(:likes_counter)

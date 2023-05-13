@@ -31,7 +31,7 @@ class CommentController < ApplicationController
       flash[:success] = 'Comment deleted!'
       @comment.post.decrement!(:comments_counter)
     else
-      flash[:danger] = 'Comment not deleted!'
+      flash[:danger] = 'Comments not deleted!'
     end
     redirect_to user_post_path(current_user.id, @post.id)
   end

@@ -1,6 +1,10 @@
+require 'jwt'
 class UserController < ApplicationController
+  before_action :authenticate_user!, except: %i[new create]
+
   def index
     @users = User.all
+    @current_user = current_user
   end
 
   def show
@@ -9,7 +13,9 @@ class UserController < ApplicationController
     @recent_posts = @user.recent_posts
   end
 
-  def edit
-    @user = User.find(params[:id])
+  private
+
+  def user_params
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 end
